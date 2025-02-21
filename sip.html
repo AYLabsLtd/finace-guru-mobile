@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <title>Financial Calculations</title>
+    <meta charset="utf-8"/>
+  <title>Systematic Investment Plan</title>
   <style>
     /* Basic reset */
     * {
@@ -419,24 +419,6 @@
     }
 
     // ============================================================== 
-    // (C) Update Car Loan Down Payment state based on top input values.
-    // If "Down payment for car" > 0 and "Use rest as car down payment" is Yes, 
-    // disable the car loan down payment field and set its value accordingly.
-    // ==============================================================
-    function updateCarDownPaymentState() {
-      const topCarDP = parseFloat(document.getElementById('downPaymentForCar').value) || 0;
-      const useRestCarDP = document.getElementById('useRestAsCarDownPayment').value;
-      const carDPField = document.getElementById('carDownPayment');
-
-      if (topCarDP > 0 && useRestCarDP === 'Yes') {
-        carDPField.value = topCarDP.toFixed(2);
-        carDPField.disabled = true;
-      } else {
-        carDPField.disabled = false;
-      }
-    }
-
-    // ============================================================== 
     // (D) "Submit" top inputs: (currently just an alert)
     // ==============================================================
     function submitTopInputs() {
@@ -570,17 +552,6 @@
       document.getElementById('monthlySipResult').innerHTML = '';
     }
 
-    function resetCarLoan() {
-      document.getElementById('carCost').value = '';
-      document.getElementById('carDownPayment').value = '';
-      document.getElementById('carDownPayment').disabled = false;
-      document.getElementById('carInterest').value = '';
-      document.getElementById('carInterestSlider').value = 0;
-      document.getElementById('carLoanTerm').value = '';
-      document.getElementById('carLoanTermSlider').value = 1;
-      document.getElementById('carLoanResult').innerHTML = '';
-    }
-
     // ============================================================== 
     // RESET ALL: re-enable top fields and clear all inputs/results.
     // ==============================================================
@@ -592,16 +563,8 @@
       document.getElementById('useRestAsLumpSumSip').value = 'No';
       document.getElementById('useRestAsLumpSumSip').disabled = false;
       
-      // Reset new car top fields
-      document.getElementById('downPaymentForCar').value = '';
-      document.getElementById('downPaymentForCar').disabled = false;
-      document.getElementById('useRestAsCarDownPayment').value = 'No';
-      document.getElementById('useRestAsCarDownPayment').disabled = false;
-      
-      resetHousing();
       resetLumpSumSIP();
       resetMonthlySIP();
-      resetCarLoan();
       updateLumpsumField();
     }
   </script>
