@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Financial Calculations</title>
+  <title>Mortgage Calculator</title>
   <style>
     /* Basic reset */
     * {
@@ -214,7 +214,7 @@
 
     <!-- ==================== HOUSING SECTION ==================== -->
     <section class="financial-section" id="housing-section">
-      <h2>Mortgage and Housing Calculator</h2>
+
       <div class="calc-wrapper">
         <!-- Inputs -->
         <div class="inputs-container">
@@ -330,43 +330,6 @@
     }
 
     // ============================================================== 
-    // (B) Auto-update the LumpSum SIP field if "Use rest as Lump Sum SIP?" is Yes.
-    // ==============================================================
-    function updateLumpsumField() {
-      const useRestVal = document.getElementById('useRestAsLumpSumSip').value;
-      const moneyAtHand = parseFloat(document.getElementById('moneyAtHand').value) || 0;
-      const downPaymentOpt = parseFloat(document.getElementById('downPaymentOptional').value) || 0;
-      const lumpsumField = document.getElementById('lumpsum');
-
-      if (useRestVal === 'Yes') {
-        let lumpsum = moneyAtHand - downPaymentOpt;
-        if (lumpsum < 0) lumpsum = 0;
-        lumpsumField.value = lumpsum.toFixed(2);
-        lumpsumField.disabled = true;
-      } else {
-        lumpsumField.disabled = false;
-      }
-    }
-
-    // ============================================================== 
-    // (C) Update Car Loan Down Payment state based on top input values.
-    // If "Down payment for car" > 0 and "Use rest as car down payment" is Yes, 
-    // disable the car loan down payment field and set its value accordingly.
-    // ==============================================================
-    function updateCarDownPaymentState() {
-      const topCarDP = parseFloat(document.getElementById('downPaymentForCar').value) || 0;
-      const useRestCarDP = document.getElementById('useRestAsCarDownPayment').value;
-      const carDPField = document.getElementById('carDownPayment');
-
-      if (topCarDP > 0 && useRestCarDP === 'Yes') {
-        carDPField.value = topCarDP.toFixed(2);
-        carDPField.disabled = true;
-      } else {
-        carDPField.disabled = false;
-      }
-    }
-
-    // ============================================================== 
     // (D) "Submit" top inputs: (currently just an alert)
     // ==============================================================
     function submitTopInputs() {
@@ -439,17 +402,7 @@
       document.getElementById('useRestAsLumpSumSip').value = 'No';
       document.getElementById('useRestAsLumpSumSip').disabled = false;
       
-      // Reset new car top fields
-      document.getElementById('downPaymentForCar').value = '';
-      document.getElementById('downPaymentForCar').disabled = false;
-      document.getElementById('useRestAsCarDownPayment').value = 'No';
-      document.getElementById('useRestAsCarDownPayment').disabled = false;
-      
       resetHousing();
-      resetLumpSumSIP();
-      resetMonthlySIP();
-      resetCarLoan();
-      updateLumpsumField();
     }
   </script>
 </body>
